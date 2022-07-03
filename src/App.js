@@ -1,20 +1,17 @@
 
 import './App.css';
-import WarningSign from './components/Alert/WarningSign';
-import MyFooter from './components/Footer/MyFooter';
-import   MyHeader  from './components/Header/MyHeader';
+import 'bootstrap/dist/css/bootstrap.min.css'
+import WarningSign from './components/WarningSign';
 
 function App() {
   return (
-    <div >
-    <MyHeader />
-    <WarningSign text="warning you now" />
-     <p> Welcome to react</p>
-
-     <MyFooter />
-        
-    </div>
+    <div className='App'> 
+    <header className='App-header'>
+    <WarningSign text="Watch Out!" />
+    </header>
+    </div> 
   );
-}
+    }
+
 
 export default App;
