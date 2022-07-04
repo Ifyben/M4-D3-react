@@ -1,13 +1,15 @@
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
+import { Card } from 'react-bootstrap';
 
-const SingleBook = (props) => (
+const SingleBook = ({ book }) => (
+    <>
+    
     <Card>
-      <Card.Img variant="top" src={props.book.img} />
+      <Card.Img variant="top" src={book.img} />
       <Card.Body>
-        <Card.Title>{props.book.tiitle}</Card.Title>
+        <Card.Title style={{color: 'black' }}>{book.title}</Card.Title>
       </Card.Body>
-    </Card>
+    </Card></>
+
   );
 
 export default SingleBook;
