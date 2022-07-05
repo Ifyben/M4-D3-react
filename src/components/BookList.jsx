@@ -7,6 +7,7 @@ class BookList extends React.Component {
     state = {
         searchQuery: ''
     }
+    
     render() {
         return (
             <Container>
@@ -14,7 +15,7 @@ class BookList extends React.Component {
                     <Col>
                         <Form.Group controlId="formBasicEmail">
                             <Form.Label>Search</Form.Label>
-                            <Form.Control 
+                            <Form.Control
                                 type="email" 
                                 placeholder="Search here" 
                                 value={this.state.searchQuery}
