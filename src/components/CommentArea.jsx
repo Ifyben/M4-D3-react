@@ -1,19 +1,25 @@
 import { Component } from "react";
+import CommentsList from "./CommentsList";
 
 class CommentArea extends Component {
     state = {
         comments: [] //comments will go here
     }
 
+
     componentDidMount = async () => {
+
         try {
-            let response = await fetch(`https://api.pexels.com/api/comments/` + this.props.asin, {
+            
+            let response = await fetch('https://striveschool-api.herokuapp.com/api/comments/' + this.props.asin, {
                 headers: {
-                    Authorization: "563492ad6f9170000100000119c438fe77374da080d4a0d01369fab5"
+                    Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTRiMWQwNjRiYjUzZDAwMTViMTllY2YiLCJpYXQiOjE2NTcwMzY3NzUsImV4cCI6MTY1ODI0NjM3NX0.Fomv5CitgDSLTApWJflGo_wLBuL6VKT7_dpsr82Z0gU"
                 }
             })
-            console.log(response)
+            
+            
             let comments = await response.json() 
+            console.log(comments)
             this.setState({ comments: comments}) 
         } catch (error) {
             console.log(error) 
@@ -22,8 +28,8 @@ class CommentArea extends Component {
 
     render() {
         return (
-            <div>
-                {/* <CommentList comments={} /> */}
+            <div style={{ color: 'black' }}>
+                <CommentsList commentsToShow={this.state.comments}/> 
             </div>
         )
     }

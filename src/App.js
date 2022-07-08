@@ -14,6 +14,7 @@ function App() {
     {/* <WarningSign text="Watch Out!" /> */}
     {/* <MyBadge text="NEW!!" color="info" /> */}
     {/* <SingleBook book={fantasyBooks[0]} /> */}
+   
     <BookList books={fantasyBooks} />
     </header>
     </div> 
