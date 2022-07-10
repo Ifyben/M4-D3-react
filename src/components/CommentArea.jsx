@@ -1,5 +1,6 @@
 import { Component } from "react";
 import CommentsList from "./CommentsList";
+import AddComment from "./AddComment";
 
 class CommentArea extends Component {
     state = {
@@ -28,7 +29,8 @@ class CommentArea extends Component {
 
     render() {
         return (
-            <div style={{ color: 'black' }}>
+            <div>
+                <AddComment asin={this.props.asin} />
                 <CommentsList commentsToShow={this.state.comments}/> 
             </div>
         )
