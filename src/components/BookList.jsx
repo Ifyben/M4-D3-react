@@ -14,7 +14,7 @@ class BookList extends React.Component {
                 <Row>
                     <Col>
                         <Form.Group controlId="formBasicEmail">
-                            <Form.Label>Search</Form.Label>
+                            <Form.Label>WELCOME TO IFEE'S WORLD OF BOOKS</Form.Label>
                             <Form.Control
                                 type="email" 
                                 placeholder="Search here" 
