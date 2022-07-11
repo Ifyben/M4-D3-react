@@ -1,22 +1,26 @@
 import React from "react";
 import SingleBook from "./SingleBook";
 import { Col, Container, Form, Row } from 'react-bootstrap'
+import CommentArea from './CommentArea';
 
 class BookList extends React.Component {
 
     state = {
-        searchQuery: ''
+        searchQuery: '' ,
+        selectedBook: null
     }
     
     render() {
         return (
             <Container>
                 <Row>
+                    <Col md={8}>
+                <Row>
                     <Col>
                         <Form.Group controlId="formBasicEmail">
                             <Form.Label>WELCOME TO IFEE'S WORLD OF BOOKS</Form.Label>
                             <Form.Control
-                                type="email" 
+                                type="text" 
                                 placeholder="Search here" 
                                 value={this.state.searchQuery}
                                 onChange={e => this.setState({ searchQuery: e.target.value })}
@@ -25,13 +29,23 @@ class BookList extends React.Component {
                     </Col>
                 </Row>
                 <Row>
-                {
+                    {
                         this.props.books.filter(b => b.title.toLowerCase().includes(this.state.searchQuery)).map(b => (
                             <Col key={b.asin} xs={3}>
-                                <SingleBook book={b} />
+                                <SingleBook 
+                                book={b} 
+                                selectedBook={this.state.selectedBook} 
+                                changeSelectedBook={ asin => this.setState({
+                                selectedBook: asin
+                                })} /> 
                             </Col>
                         ))
                     }
+                </Row>
+                </Col>
+                <Col md={4}>
+                    <CommentArea asin={this.state.selectedBook} /> 
+                </Col>
                 </Row>
             </Container>
         )
