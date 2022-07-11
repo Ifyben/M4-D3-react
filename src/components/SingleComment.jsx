@@ -20,9 +20,9 @@ const deleteComment = async (asin) => {
 
 const SingleComment = ({ comment }) => (
     
-    <ListGroup.Item>
+    <ListGroup.Item style={{padding: '1.25rem 0.25rem', fontSize: 'large'}}>
         {comment.comment}
-        <Button variant="danger" className="ml-2" onClick={() => deleteComment(comment._id)}>D</Button>
+        <Button variant="danger" className="ml-2" onClick={() => deleteComment(comment._id)}>Del</Button>
     </ListGroup.Item>
      
 )
