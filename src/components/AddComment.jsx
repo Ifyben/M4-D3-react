@@ -1,33 +1,29 @@
-import { Component } from "react";
+import { useState } from "react";
+import { useEffect } from "react";
+//import { Component } from "react";
 import { Button, Form } from "react-bootstrap";
 
-class AddComment extends Component {
+const AddComment = ({asin}) => {
 
-    state = {
-        comment: {
-            comment: '',
-            rate: 1,
-            elementId: null 
-        }
-    }
+    const [comment, setComment] = useState({
+        comment: '',
+        rate: 1,
+        elementId: null
+    })
 
-    componentDidUpdate(prevProps) {
-        if(prevProps.asin !== this.props.asin) {
-            this.setState({
-                comment: {
-                    ...this.state.comment,
-                    elementId: this.props.asin
-                }
-            })
-        }
-    }
+    useEffect(() => {
+        setComment(c => ({
+            ...c,
+            elementId: asin
+        }))
+    }, [asin]) 
 
-    sendComment = async (e) => {
+    const sendComment = async (e) => {
         e.preventDefault()
         try {
             let response = await fetch('https://striveschool-api.herokuapp.com/api/comments/', {
                 method: 'POST',
-                body: JSON.stringify(this.state.comment), 
+                body: JSON.stringify(comment), 
                 headers: {
                     'Content-type': 'application/json',
                     Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTRiMWQwNjRiYjUzZDAwMTViMTllY2YiLCJpYXQiOjE2NTcwMzY3NzUsImV4cCI6MTY1ODI0NjM3NX0.Fomv5CitgDSLTApWJflGo_wLBuL6VKT7_dpsr82Z0gU"
@@ -36,6 +32,11 @@ class AddComment extends Component {
             if(response.ok) {
                 //if it is true, it means that comment has been sent successfully!
                 alert('Comment has been sent')
+                setComment({
+                    comment: '',
+                    rate: 1,
+                    elementId: null
+                })
             } else {
                 console.log('error') 
                 alert('Something went wrong')  
@@ -46,49 +47,27 @@ class AddComment extends Component {
         }
     }
 
-    getComment =async() =>{
-
-        try {
-            let response= await fetch('https://striveschool-api.herokuapp.com/api/comments/')
-
-
-            if(response.ok){
-                let data = response.json()
-                console.log("here are my comments", data)
-            }
-            
-        } catch (error) {
-            
-        }
-
-    }
-
-    render() {
         return (
             <div>
-                <Form onSubmit={this.sendComment} >
+                <Form onSubmit={sendComment} >
                     <Form.Group>
                         <Form.Label>Comment text</Form.Label>
                         <Form.Control 
                             type="text" 
                             placeholder="Add comment here"
-                            value={this.state.comment.comment} 
-                            onChange={e => this.setState({
-                                comment: {
-                                    ...this.state.comment,
+                            value={comment.comment} 
+                            onChange={e => setComment({
+                                ...comment,
                                     comment: e.target.value 
-                                }
                             })}
                         />
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>Rating</Form.Label>
-                        <Form.Control as="select" value={this.state.comment.rate} 
-                            onChange={e => this.setState({
-                                comment: {
-                                    ...this.state.comment,
+                        <Form.Control as="select" value={comment.rate} 
+                            onChange={e => setComment({
+                                    ...comment,
                                     rate: e.target.value 
-                                }
                             })}>
                             <option>1</option>
                             <option>2</option>
@@ -103,7 +82,6 @@ class AddComment extends Component {
                 </Form>
             </div>
         )
-    }
 }
 
 export default AddComment
