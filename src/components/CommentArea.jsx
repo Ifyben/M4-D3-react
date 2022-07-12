@@ -3,7 +3,7 @@ import CommentsList from "./CommentsList";
 import AddComment from "./AddComment";
 import Loading from "./Loading";
 import Error from "./Error";
-import { Component } from "react";
+//import { Component } from "react";
 
 const CommentArea = ({asin}) => {
     

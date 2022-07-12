@@ -32,11 +32,6 @@ const AddComment = ({asin}) => {
             if(response.ok) {
                 //if it is true, it means that comment has been sent successfully!
                 alert('Comment has been sent')
-                setComment({
-                    comment: '',
-                    rate: 1,
-                    elementId: null
-                })
             } else {
                 console.log('error') 
                 alert('Something went wrong')  

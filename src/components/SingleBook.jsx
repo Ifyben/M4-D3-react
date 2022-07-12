@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
 
-const SingleBook = ({changeSelectedBook, selectedBook, book }) => {
+const SingleBook = ({ changeSelectedBook, selectedBook, book }) => {
         return (
             <>
             <Card
@@ -10,7 +10,7 @@ const SingleBook = ({changeSelectedBook, selectedBook, book }) => {
             >
                 <Card.Img variant="top" src={book.img} />
                 
-                <Card.Body style={{}}>
+                <Card.Body>
                     <Card.Title style={{color: 'black' }}>{book.title}</Card.Title>
                 </Card.Body>
             </Card>
